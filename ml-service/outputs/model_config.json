@@ -1,0 +1,4 @@
+{
+  "img_size": 224,
+  "preprocessing": "resize to img_size x img_size, RGB, raw 0-255 pixels (no rescaling)"
+}
