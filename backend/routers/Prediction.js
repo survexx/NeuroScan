@@ -98,10 +98,6 @@ router.post('/predict', uploadMri.single('file'), async (req, res) => {
             probabilities: result.probabilities
         });
     } catch (error) {
-        if (req.file?.path && fs.existsSync(req.file.path)) {
-            fs.unlinkSync(req.file.path);
-        }
-
         if (error instanceof multer.MulterError) {
             const message = error.code === 'LIMIT_FILE_SIZE'
                 ? 'Image too large (maximum 10 MB).'
@@ -111,6 +107,10 @@ router.post('/predict', uploadMri.single('file'), async (req, res) => {
 
         const status = error.status || 502;
         return res.status(status).json({ success: false, message: error.message });
+    } finally {
+        if (req.file?.path && fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
     }
 });
 
