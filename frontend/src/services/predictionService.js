@@ -6,7 +6,7 @@ const PREDICTION_ENDPOINT = '/api/predictions/predict';
 
 const predictionApi = axios.create({
     baseURL: API_BASE_URL,
-    timeout: 60000
+    timeout: 120000
 });
 
 predictionApi.interceptors.request.use((config) => {
