@@ -18,7 +18,10 @@ data/
 raw_data/
 
 # Generated training outputs
-outputs/
+outputs/confusion_matrix.png
+outputs/training_curves.png
+outputs/classification_report.txt
+outputs/metrics.json
 
 # Environment secrets
 .env

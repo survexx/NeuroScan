@@ -14,17 +14,28 @@ from tensorflow import keras
 class BrainTumorClassifier:
     def __init__(
         self,
-        model_path="outputs/brain_tumor_model.keras",
-        class_names_path="outputs/class_names.json",
-        config_path="outputs/model_config.json",
+        model_path=None,
+        class_names_path=None,
+        config_path=None,
     ):
+        BASE_DIR = Path(__file__).resolve().parent
+        OUTPUTS_DIR = BASE_DIR / "outputs"
+
+        model_path = model_path or OUTPUTS_DIR / "brain_tumor_model.keras"
+        class_names_path = class_names_path or OUTPUTS_DIR / "class_names.json"
+        config_path = config_path or OUTPUTS_DIR / "model_config.json"
+
         self.model = keras.models.load_model(model_path)
+
         with open(class_names_path) as f:
             self.class_names = json.load(f)
+
         self.img_size = 224
+
         if Path(config_path).exists():
             with open(config_path) as f:
                 self.img_size = json.load(f).get("img_size", 224)
+
         self._setup_gradcam()
 
     # ------------------------------------------------------------------ utils
