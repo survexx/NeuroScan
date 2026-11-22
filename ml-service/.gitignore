@@ -1,0 +1,40 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local data and datasets
+dataset/
+data/
+raw_data/
+
+# Generated training outputs
+outputs/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Logs and coverage
+logs/
+*.log
+coverage/
+htmlcov/
+.coverage
+
+# Jupyter and editors
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
