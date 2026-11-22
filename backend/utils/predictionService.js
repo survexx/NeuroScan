@@ -27,6 +27,10 @@ export async function predictFromFastApi(file) {
         return response.data;
     } catch (error) {
         if (error.response) {
+            console.error('FastAPI response error:', {
+                status: error.response.status,
+                data: error.response.data
+            });
             const status = error.response.status;
             const detail = error.response.data?.detail;
             const upstreamError = new Error(detail || 'FastAPI could not process the image');
