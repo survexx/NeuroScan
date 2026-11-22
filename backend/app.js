@@ -1,11 +1,9 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import connectDB from './config/db.js';
-import dotenv from "dotenv";
 import authRouter from './routers/Auth.js';
 import predictionRouter from './routers/Prediction.js';
-
-dotenv.config();
 
 if (!process.env.JWT_SECRET) {
     console.error('Backend startup failed: JWT_SECRET is missing');

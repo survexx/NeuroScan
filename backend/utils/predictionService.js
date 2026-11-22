@@ -18,7 +18,7 @@ export async function predictFromFastApi(file) {
     try {
         const response = await axios.post(`${getMlServiceUrl()}/predict`, form, {
             headers: form.getHeaders(),
-            timeout: Number(process.env.ML_REQUEST_TIMEOUT_MS || 60000),
+            timeout: Number(process.env.ML_REQUEST_TIMEOUT_MS || 120000),
             maxContentLength: 10 * 1024 * 1024,
             maxBodyLength: 10 * 1024 * 1024,
             params: { gradcam: false }
@@ -58,7 +58,7 @@ export async function predictFromFastApi(file) {
 
 export async function checkFastApiHealth() {
     const response = await axios.get(`${getMlServiceUrl()}/health`, {
-        timeout: Number(process.env.ML_REQUEST_TIMEOUT_MS || 10000)
+        timeout: Number(process.env.ML_REQUEST_TIMEOUT_MS || 120000)
     });
     return response.data;
 }
